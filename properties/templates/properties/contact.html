@@ -4,16 +4,23 @@
 {% block title %}Contact Us - FAKEMA Real Estate{% endblock %}
 
 {% block content %}
-    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
-        <h1>Get In Touch With Us</h1>
-        <p>We'd love to hear from you. Send us a message!</p>
-    </section>
+<!-- Hero Section -->
+<section class="luxe-contact-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% static 'img/place.jpg' %}');">
+    <div class="hero-content">
+        <div class="prestige-badge">Contact Premium</div>
+        <h1 class="text-glow">Connectez-vous avec notre équipe</h1>
+        <p class="hero-subtitle">Nous sommes à votre écoute pour répondre à toutes vos questions</p>
+    </div>
+</section>
 
-    <section style="padding: 40px 0;">
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <div class="card" style="flex: 1 1 400px;">
-                <h2>Send Us a Message</h2>
-                
+<!-- Contact Section -->
+<section class="golden-contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Form Card -->
+            <div class="card contact-form-card">
+                <h2 class="gold-title">Envoyez-nous un message</h2>
+
                 {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -22,43 +29,410 @@
                     </ul>
                 {% endif %}
 
-                <form method="post">
+                <form method="post" class="luxe-contact-form">
                     {% csrf_token %}
                     {{ form.property.as_hidden }}
 
                     <div class="form-group">
-                        <label for="{{ form.name.id_for_label }}">Name</label>
+                        <label for="{{ form.name.id_for_label }}">Nom complet</label>
                         {{ form.name }}
-                        {% if form.name.errors %} <p style="color: red; font-size: 0.9em;">{{ form.name.errors }}</p>{% endif %}
+                        {% if form.name.errors %} <p class="error-message">{{ form.name.errors }}</p>{% endif %}
                     </div>
                     <div class="form-group">
                         <label for="{{ form.email.id_for_label }}">Email</label>
                         {{ form.email }}
-                        {% if form.email.errors %} <p style="color: red; font-size: 0.9em;">{{ form.email.errors }}</p>{% endif %}
+                        {% if form.email.errors %} <p class="error-message">{{ form.email.errors }}</p>{% endif %}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.phone.id_for_label }}">Phone (Optional)</label>
+                        <label for="{{ form.phone.id_for_label }}">Téléphone (Optionnel)</label>
                         {{ form.phone }}
-                        {% if form.phone.errors %} <p style="color: red; font-size: 0.9em;">{{ form.phone.errors }}</p>{% endif %}
+                        {% if form.phone.errors %} <p class="error-message">{{ form.phone.errors }}</p>{% endif %}
                     </div>
                     <div class="form-group">
                         <label for="{{ form.message.id_for_label }}">Message</label>
                         {{ form.message }}
-                        {% if form.message.errors %} <p style="color: red; font-size: 0.9em;">{{ form.message.errors }}</p>{% endif %}
+                        {% if form.message.errors %} <p class="error-message">{{ form.message.errors }}</p>{% endif %}
                     </div>
-                    <button type="submit" class="btn">Submit Message</button>
+                    <button type="submit" class="luxe-btn gold-hover">
+                        <span>Envoyer le message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </form>
             </div>
 
-            <div class="card" style="flex: 1 1 300px; background-color: #007bff; color: white;">
-                <h2>Our Contact Details</h2>
-                <p>Location: Douala, CAMEROUN</p>
-                <p>Phone: +237 6XX XXX XXX</p>
-                <p>Email: info@fakemabuilding.com</p>
-                <p>Hours: Mon - Fri: 8:00 AM - 5:00 PM</p>
-                <h3 style="margin-top: 20px;">Follow Us</h3>
-                <p> [Social Media Icons/Links here if you add them manually] </p>
+            <!-- Contact Info Card -->
+            <div class="card contact-info-card">
+                <h2 class="gold-title">Nos coordonnées</h2>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt gold-icon"></i>
+                    <p>Douala, CAMEROUN</p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-phone gold-icon"></i>
+                    <p>+237 6XX XXX XXX</p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope gold-icon"></i>
+                    <p>info@fakemabuilding.com</p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-clock gold-icon"></i>
+                    <p>Lun - Ven: 8:00 - 17:00</p>
+                </div>
+
+                <div class="contact-line gold-bg"></div>
+
+                <h3 class="follow-title">Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+    /* Palette Exclusive Marron & Or */
+    :root {
+        --deep-brown: #4A2D00;
+        --rich-brown: #5A3A10;
+        --light-brown: #8C6B3F;
+        --ivory: #FFFFF0;
+
+        --gold: #D4AF37;
+        --gold-light: #F0E6C2;
+        --gold-dark: #B38E2D;
+        --gold-bright: #FFD700;
+
+        --black: #1A1A1A;
+        --white: #FFFFFF;
+    }
+
+    /* Base Responsive Styles */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: var(--black);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Hero Section */
+    .luxe-contact-hero {
+        height: 50vh;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        color: var(--white);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        z-index: 2;
+    }
+
+    .prestige-badge {
+        display: inline-block;
+        background-color: var(--gold-bright);
+        color: var(--deep-brown);
+        padding: clamp(8px, 2vw, 10px) clamp(20px, 4vw, 25px);
+        border-radius: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .luxe-contact-hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        line-height: 1.2;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        margin-bottom: 40px;
+        color: var(--gold-light);
+    }
+
+    /* Contact Section */
+    .golden-contact-section {
+        padding: clamp(40px, 6vw, 80px) 0;
+        background-color: var(--ivory);
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+        gap: clamp(20px, 4vw, 40px);
+        margin-top: clamp(30px, 5vw, 50px);
+    }
+
+    /* Form Card */
+    .contact-form-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: clamp(25px, 3vw, 40px);
+        transition: all 0.5s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .contact-form-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    .contact-form-card h2 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+        margin-bottom: clamp(20px, 3vw, 30px);
+        text-align: center;
+        color: var(--deep-brown);
+    }
+
+    .luxe-contact-form .form-group {
+        margin-bottom: clamp(15px, 2.5vw, 25px);
+    }
+
+    .luxe-contact-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--rich-brown);
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .luxe-contact-form input,
+    .luxe-contact-form textarea {
+        width: 100%;
+        padding: clamp(10px, 2vw, 12px) clamp(12px, 2vw, 15px);
+        border: 1px solid var(--gold-light);
+        border-radius: 5px;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        transition: all 0.3s ease;
+        background-color: rgba(212, 175, 55, 0.05);
+    }
+
+    .luxe-contact-form input:focus,
+    .luxe-contact-form textarea:focus {
+        border-color: var(--gold);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    .luxe-contact-form textarea {
+        min-height: clamp(120px, 25vw, 150px);
+        resize: vertical;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        margin-top: 5px;
+    }
+
+    /* Info Card */
+    .contact-info-card {
+        background: linear-gradient(135deg, var(--deep-brown), var(--rich-brown));
+        color: var(--white);
+        border-radius: 10px;
+        padding: clamp(25px, 3vw, 40px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info-card h2 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+        margin-bottom: clamp(20px, 3vw, 30px);
+        text-align: center;
+        color: var(--gold-light);
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: clamp(15px, 2.5vw, 25px);
+    }
+
+    .contact-info-item i {
+        margin-right: clamp(10px, 2vw, 15px);
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--gold);
+    }
+
+    .contact-info-item p {
+        margin: 0;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+
+    .contact-line {
+        width: 100%;
+        height: 2px;
+        margin: clamp(15px, 2.5vw, 20px) 0;
+        background: var(--gold);
+        opacity: 0.3;
+    }
+
+    .follow-title {
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        color: var(--gold-light);
+        margin-bottom: clamp(15px, 2.5vw, 20px);
+        text-align: center;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: clamp(10px, 2vw, 15px);
+        margin-top: clamp(10px, 2vw, 15px);
+    }
+
+    .social-icon {
+        width: clamp(35px, 5vw, 40px);
+        height: clamp(35px, 5vw, 40px);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold-light);
+        transition: all 0.3s ease;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .social-icon:hover {
+        background: var(--gold);
+        color: var(--deep-brown);
+        transform: translateY(-3px);
+    }
+
+    /* Buttons */
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: clamp(12px, 2vw, 15px) clamp(25px, 4vw, 35px);
+        border-radius: 50px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .gold-hover:hover {
+        background: var(--gold-bright);
+        color: var(--deep-brown);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Messages */
+    .messages {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .messages li {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
+
+    .messages .success {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+        border: 1px solid rgba(40, 167, 69, 0.3);
+    }
+
+    .messages .error {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+        border: 1px solid rgba(220, 53, 69, 0.3);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .luxe-contact-hero {
+            min-height: 350px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .luxe-contact-hero {
+            min-height: 300px;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation for contact cards
+    const contactCards = document.querySelectorAll('.contact-form-card, .contact-info-card');
+
+    function animateCards() {
+        contactCards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (cardTop < windowHeight * 0.85) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    // Set initial state
+    contactCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', animateCards);
+    animateCards(); // Run once on load
+});
+</script>
 {% endblock %}

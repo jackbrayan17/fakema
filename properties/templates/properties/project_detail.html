@@ -4,42 +4,497 @@
 {% block title %}{{ project.title }} - FAKEMA Projects{% endblock %}
 
 {% block content %}
-    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
-        <h1>{{ project.title }}</h1>
-        <p>{{ project.location }} - {{ project.category }}</p>
-    </section>
+<!-- Hero Section -->
+<section class="luxe-project-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% if project.main_image %}{{ project.main_image.url }}{% else %}{% static 'img/projects_bg.jpg' %}{% endif %}');">
+    <div class="hero-content">
+        <div class="prestige-badge">{{ project.category }}</div>
+        <h1 class="text-glow">{{ project.title }}</h1>
+        <p class="hero-subtitle"><i class="fas fa-map-marker-alt"></i> {{ project.location }}</p>
+    </div>
+</section>
 
-    <section style="padding: 40px 0;">
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <div style="flex: 2 1 600px;">
-                <div style="margin-bottom: 20px;">
+<!-- Project Content -->
+<section class="golden-project-section">
+    <div class="container">
+        <div class="project-grid">
+            <!-- Main Content -->
+            <div class="project-main">
+                <!-- Main Image -->
+                <div class="luxe-image-container">
                     {% if project.main_image %}
-                        <img src="{{ project.main_image.url }}" alt="{{ project.title }}" style="width:100%; height: 500px; object-fit: cover;">
+                        <img src="{{ project.main_image.url }}" alt="{{ project.title }}" class="project-main-image" loading="lazy">
                     {% else %}
-                        <img src="{% static 'img/placeholder_project.jpg' %}" alt="No project image" style="width:100%; height: 500px; object-fit: cover;">
+                        <img src="{% static 'img/placeholder_project.jpg' %}" alt="No project image" class="project-main-image" loading="lazy">
                     {% endif %}
+                    <div class="image-overlay gold-bg"></div>
                 </div>
 
-                <div class="card">
-                    <h2>Project Overview</h2>
-                    <p><strong>Category:</strong> {{ project.category }}</p>
-                    <p><strong>Location:</strong> {{ project.location }}</p>
-                    {% if project.completion_date %}
-                    <p><strong>Completion Date:</strong> {{ project.completion_date|date:"F d, Y" }}</p>
-                    {% endif %}
+                <!-- Project Details -->
+                <div class="luxe-card project-overview">
+                    <h2 class="gold-title">Détails du Projet</h2>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <i class="fas fa-tags gold-icon"></i>
+                            <div>
+                                <span class="detail-label">Catégorie</span>
+                                <span class="detail-value">{{ project.category }}</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marked-alt gold-icon"></i>
+                            <div>
+                                <span class="detail-label">Localisation</span>
+                                <span class="detail-value">{{ project.location }}</span>
+                            </div>
+                        </div>
+                        {% if project.completion_date %}
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-check gold-icon"></i>
+                            <div>
+                                <span class="detail-label">Date d'achèvement</span>
+                                <span class="detail-value">{{ project.completion_date|date:"F d, Y" }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
 
-                <div class="card">
-                    <h2>Description</h2>
-                    <p>{{ project.description|linebreaksbr }}</p>
+                <!-- Description -->
+                <div class="luxe-card project-description">
+                    <h2 class="gold-title">Description</h2>
+                    <div class="description-content">
+                        {{ project.description|linebreaksbr }}
+                    </div>
                 </div>
             </div>
 
-            <div style="flex: 1 1 300px; background-color: #f0f8ff; padding: 20px; border: 1px solid #add8e6; border-radius: 5px; text-align: center;">
-                <h2>Have a Similar Project?</h2>
-                <p style="margin-bottom: 20px;">Let us know how FAKEMA can help you.</p>
-                <a href="{% url 'properties:contact' %}" class="btn">Get a Free Quote</a>
+            <!-- Sidebar -->
+            <div class="project-sidebar">
+                <div class="luxe-card project-cta">
+                    <div class="cta-icon gold-bg">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h2 class="gold-title">Un Projet Similaire ?</h2>
+                    <p class="cta-text">Dites-nous comment FAKEMA peut vous aider à réaliser votre vision.</p>
+                    <a href="{% url 'properties:contact' %}" class="luxe-btn gold-hover">
+                        <span>Obtenir un Devis Gratuit</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+    /* Palette Exclusive Marron & Or */
+    :root {
+        --deep-brown: #4A2D00;
+        --rich-brown: #5A3A10;
+        --light-brown: #8C6B3F;
+        --ivory: #FFFFF0;
+
+        --gold: #D4AF37;
+        --gold-light: #F0E6C2;
+        --gold-dark: #B38E2D;
+        --gold-bright: #FFD700;
+
+        --black: #1A1A1A;
+        --white: #FFFFFF;
+    }
+
+    /* Base Styles */
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-x: hidden;
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Hero Section */
+    .luxe-project-hero {
+        height: 60vh;
+        min-height: 500px;
+        max-height: 800px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        color: var(--white);
+        padding: 20px;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        z-index: 2;
+    }
+
+    .prestige-badge {
+        display: inline-block;
+        background-color: var(--gold-bright);
+        color: var(--deep-brown);
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .luxe-project-hero h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        line-height: 1.2;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        margin-bottom: 40px;
+        color: var(--gold-light);
+    }
+
+    .hero-subtitle i {
+        margin-right: 10px;
+    }
+
+    /* Project Section */
+    .golden-project-section {
+        padding: 5vw 0;
+        background-color: var(--ivory);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 5vw;
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* Main Image */
+    .luxe-image-container {
+        position: relative;
+        height: auto;
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 40px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .luxe-image-container:hover .project-main-image {
+        transform: scale(1.05);
+    }
+
+    .luxe-image-container:hover .image-overlay {
+        opacity: 0.1;
+    }
+
+    /* Cards */
+    .luxe-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 5vw;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        transition: all 0.5s ease;
+    }
+
+    .luxe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    .luxe-card h2 {
+        font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .luxe-card h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--gold);
+    }
+
+    /* Project Details */
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: rgba(212, 175, 55, 0.05);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .detail-item:hover {
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateY(-3px);
+    }
+
+    .detail-item i {
+        font-size: 1.5rem;
+        color: var(--gold-dark);
+    }
+
+    .detail-label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--light-brown);
+        margin-bottom: 5px;
+    }
+
+    .detail-value {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--deep-brown);
+    }
+
+    /* Description */
+    .description-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--rich-brown);
+    }
+
+    /* Sidebar */
+    .project-sidebar {
+        position: relative;
+    }
+
+    /* CTA Card */
+    .project-cta {
+        text-align: center;
+        padding: 40px 30px;
+        position: sticky;
+        top: 20px;
+    }
+
+    .cta-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2rem;
+        color: var(--deep-brown);
+    }
+
+    .project-cta h2 {
+        margin-bottom: 15px;
+    }
+
+    .cta-text {
+        color: var(--rich-brown);
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Buttons */
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: 15px 25px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .gold-hover:hover {
+        background: var(--gold-bright);
+        color: var(--deep-brown);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Responsive Grid for Larger Screens */
+    @media (min-width: 992px) {
+        .project-grid {
+            grid-template-columns: 1fr 350px;
+        }
+
+        .luxe-card {
+            padding: 30px;
+        }
+    }
+
+    /* Tablet Styles */
+    @media (max-width: 991px) {
+        .luxe-project-hero {
+            height: 50vh;
+            min-height: 400px;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 767px) {
+        .luxe-project-hero {
+            height: 40vh;
+            min-height: 300px;
+        }
+
+        .prestige-badge {
+            font-size: 0.8rem;
+            padding: 8px 20px;
+            margin-bottom: 20px;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .luxe-card {
+            padding: 20px;
+        }
+
+        .cta-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Small Mobile Devices */
+    @media (max-width: 480px) {
+        .luxe-project-hero {
+            height: 35vh;
+            min-height: 250px;
+        }
+
+        .hero-content {
+            padding: 0 10px;
+        }
+
+        .luxe-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+
+        .detail-item {
+            padding: 10px;
+        }
+
+        .description-content {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation for detail items
+    const detailItems = document.querySelectorAll('.detail-item');
+
+    detailItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 100);
+    });
+
+    // Image hover effect for touch devices
+    const mainImage = document.querySelector('.luxe-image-container');
+    if (mainImage) {
+        let isTouched = false;
+
+        mainImage.addEventListener('touchstart', function() {
+            isTouched = true;
+            setTimeout(() => {
+                if (isTouched) {
+                    this.classList.add('active');
+                }
+            }, 100);
+        }, {passive: true});
+
+        mainImage.addEventListener('touchend', function() {
+            isTouched = false;
+            this.classList.remove('active');
+        }, {passive: true});
+    }
+});
+</script>
 {% endblock %}

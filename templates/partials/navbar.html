@@ -1,7 +1,11 @@
 {# my_real_estate_site/my_real_estate_site/templates/partials/navbar.html #}
 <nav>
     <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-        <a href="{% url 'properties:home' %}" class="logo">FAKEMA</a>
+        <a href="{% url 'properties:home' %}" class="logo-container">
+            {% load static %}
+            <!-- Essayez avec .png si .jpg ne marche pas -->
+            <img src="{% static 'img/logo.jpg' %}" alt="" class="logo-img" style="height: 50px; width: auto;">
+         </a>
         <ul style="display: flex;">
             <li><a href="{% url 'properties:home' %}">Home</a></li>
             <li><a href="{% url 'properties:about' %}">About Us</a></li>

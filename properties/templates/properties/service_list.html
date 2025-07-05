@@ -4,25 +4,418 @@
 {% block title %}Our Services - FAKEMA Real Estate{% endblock %}
 
 {% block content %}
-    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
-        <h1>Our Comprehensive Services</h1>
-        <p>From construction to renovation, FAKEMA offers tailored solutions.</p>
-    </section>
+<!-- Hero Section -->
+<section class="luxe-service-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% static 'img/place.jpg' %}');">
+    <div class="hero-content">
+        <div class="prestige-badge">Expertise Immobilière</div>
+        <h1 class="text-glow">Nos Services Premium</h1>
+        <p class="hero-subtitle">Des solutions sur mesure pour vos projets immobiliers</p>
+    </div>
+</section>
 
-    <section style="padding: 40px 0;">
-        <div class="container">
-            {% if services %}
-            <div class="grid-container">
-                {% for service in services %}
-                <div class="card">
-                    <h3>{{ service.name }}</h3>
-                    <p>{{ service.description }}</p>
+<!-- Services Section -->
+<section class="golden-services-section">
+    <div class="container">
+        {% if services %}
+        <div class="grid-container">
+            {% for service in services %}
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building gold-icon"></i>
                 </div>
-                {% endfor %}
+                <h3 class="gold-title">{{ service.name }}</h3>
+                <p class="brown-text">{{ service.description }}</p>
+                <div class="service-line gold-bg"></div>
             </div>
-            {% else %}
-            <p style="text-align: center;">No services currently listed. Please check back soon!</p>
-            {% endif %}
+            {% endfor %}
         </div>
-    </section>
+        {% else %}
+        <div class="no-services">
+            <i class="fas fa-hard-hat gold-icon"></i>
+            <p class="gold-text">Nos services sont en cours de mise à jour. Revenez bientôt !</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="service-cta" style="background-image: linear-gradient(rgba(74, 45, 0, 0.9), rgba(74, 45, 0, 0.8)), url('{% static 'img/place.jpg' %}');">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Prêt à concrétiser votre projet ?</h2>
+            <p class="gold-light-text">Notre équipe d'experts est à votre disposition</p>
+            <a href="#" class="luxe-btn gold-hover">
+                <span>Contactez-nous</span>
+                <i class="fas fa-phone-alt"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Palette Exclusive Marron & Or */
+    :root {
+        --deep-brown: #4A2D00;
+        --rich-brown: #5A3A10;
+        --light-brown: #8C6B3F;
+        --ivory: #FFFFF0;
+
+        --gold: #D4AF37;
+        --gold-light: #F0E6C2;
+        --gold-dark: #B38E2D;
+        --gold-bright: #FFD700;
+
+        --black: #1A1A1A;
+        --white: #FFFFFF;
+    }
+
+    /* Base Styles */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: var(--black);
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    /* Hero Section */
+    .luxe-service-hero {
+        height: 60vh;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        color: var(--white);
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        width: 100%;
+        padding: 0 20px;
+        z-index: 2;
+    }
+
+    .prestige-badge {
+        display: inline-block;
+        background-color: var(--gold-bright);
+        color: var(--deep-brown);
+        padding: 0.8rem 1.8rem;
+        border-radius: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .luxe-service-hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        line-height: 1.2;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        margin-bottom: 2.5rem;
+        color: var(--gold-light);
+    }
+
+    /* Services Section */
+    .golden-services-section {
+        padding: 4rem 0;
+        background-color: var(--ivory);
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .card.service-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: all 0.5s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    .service-icon {
+        width: 5rem;
+        height: 5rem;
+        background: rgba(212, 175, 55, 0.1);
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+    }
+
+    .gold-icon {
+        color: var(--gold-dark);
+        font-size: 2rem;
+    }
+
+    .service-card h3 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        color: var(--deep-brown);
+        margin-bottom: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .gold-title {
+        color: var(--gold-dark);
+    }
+
+    .service-card p {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        line-height: 1.7;
+        color: var(--rich-brown);
+        margin-bottom: 1.8rem;
+    }
+
+    .brown-text {
+        color: var(--rich-brown);
+    }
+
+    .service-line {
+        width: 60px;
+        height: 3px;
+        margin: 0 auto;
+        transition: all 0.5s ease;
+    }
+
+    .gold-bg {
+        background: var(--gold);
+    }
+
+    .service-card:hover .service-line {
+        width: 100px;
+        background: var(--gold-bright);
+    }
+
+    /* No Services */
+    .no-services {
+        text-align: center;
+        padding: 4rem 1.5rem;
+    }
+
+    .no-services i {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .no-services p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* CTA Section */
+    .service-cta {
+        padding: 5rem 0;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .cta-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .service-cta h2 {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        margin-bottom: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1.3;
+    }
+
+    .gold-light-text {
+        color: var(--gold-light);
+    }
+
+    .service-cta p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+    }
+
+    /* Buttons */
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: 1rem 2.2rem;
+        border-radius: 50px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        white-space: nowrap;
+    }
+
+    .gold-hover:hover {
+        background: var(--gold-bright);
+        color: var(--deep-brown);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .grid-container {
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            padding: 1.8rem 1.2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .luxe-service-hero {
+            min-height: 350px;
+            padding: 0 1rem;
+        }
+
+        .service-icon {
+            width: 4.5rem;
+            height: 4.5rem;
+        }
+
+        .service-cta {
+            padding: 4rem 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .luxe-service-hero {
+            height: 50vh;
+            min-height: 300px;
+        }
+
+        .grid-container {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .service-card {
+            padding: 1.5rem 1rem;
+        }
+
+        .service-icon {
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .no-services {
+            padding: 3rem 1rem;
+        }
+
+        .no-services i {
+            font-size: 2.5rem;
+        }
+
+        .no-services p {
+            font-size: 1.1rem;
+        }
+
+        .service-cta {
+            padding: 3rem 0;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .luxe-service-hero {
+            min-height: 280px;
+        }
+
+        .prestige-badge {
+            padding: 0.6rem 1.5rem;
+        }
+
+        .luxe-btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation for service cards
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    function animateCards() {
+        serviceCards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (cardTop < windowHeight * 0.85) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    // Set initial state
+    serviceCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', animateCards);
+    animateCards(); // Run once on load
+});
+</script>
 {% endblock %}
