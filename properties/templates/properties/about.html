@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us - FAKEMA Real Estate{% endblock %}
+
+{% block content %}
+    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
+        <h1>About FAKEMA</h1>
+        <p>Your trusted partner in African real estate and construction.</p>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 30px;">
+                <div style="flex: 1 1 400px;">
+                    <h2>Our Mission</h2>
+                    <p>
+                        At FAKEMA BTP SARL, our mission is to empower Africans in the diaspora and local residents to achieve their real estate dreams in their home countries. We understand the unique challenges and opportunities, and we are committed to providing seamless, transparent, and reliable solutions.
+                    </p>
+                    <p>
+                        We aim to bridge the gap between dream and reality, ensuring every project, from a cozy family home to a large commercial development, is built on a foundation of trust, quality, and efficiency.
+                    </p>
+                </div>
+                <div style="flex: 1 1 400px;">
+                    <img src="{% static 'img/place.jpg' %}" alt="Our Mission" style="width:100%; height: 300px; object-fit: cover;">
+                </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; flex-direction: row-reverse; margin-bottom: 30px;">
+                <div style="flex: 1 1 400px;">
+                    <h2>Our Values</h2>
+                    <ul>
+                        <li><strong>Integrity:</strong> Conducting all our operations with honesty and transparency.</li>
+                        <li><strong>Quality:</strong> Delivering superior construction and real estate services.</li>
+                        <li><strong>Client Focus:</strong> Prioritizing our clients' needs and ensuring their satisfaction.</li>
+                        <li><strong>Innovation:</strong> Embracing modern techniques and sustainable practices.</li>
+                        <li><strong>Excellence:</strong> Striving for the highest standards in every project.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1 1 400px;">
+                    <img src="{% static 'img/place.jpg' %}" alt="Our Values" style="width:100%; height: 300px; object-fit: cover;">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <h2>Why Choose FAKEMA?</h2>
+                <p style="max-width: 800px; margin: 0 auto 30px;">
+                    With years of experience and a deep understanding of the African real estate landscape, FAKEMA stands out as a reliable and efficient partner. We offer:
+                </p>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3>Guaranteed Success</h3>
+                        <p>We ensure 100% success for your real estate investments.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Legal Expertise</h3>
+                        <p>All legal procedures handled by our expert team.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Transparent Tracking</h3>
+                        <p>Track your project's progress online, 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

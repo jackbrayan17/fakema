@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FAKEMA Real Estate - Your Partner in African Real Estate{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <h1>Building Dreams Across Africa</h1>
+        <p>FAKEMA is your trusted partner for BTP and real estate projects.</p>
+        <a href="{% url 'properties:property_list' %}" class="btn">Explore Properties</a>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <h2 class="section-title">Featured Properties</h2>
+        {% if featured_properties %}
+        <div class="grid-container">
+            {% for property in featured_properties %}
+            <div class="card">
+                <a href="{% url 'properties:property_detail' property.slug %}">
+                    {% if property.images.first %}
+                    {# Display the actual image associated with the property #}
+                    <img src="{% static 'img/place.jpg' %}" alt="{{ property.title }}" style="width:100%; height: 150px; object-fit: cover;">
+                    {% else %}
+                    {# Fallback to a static placeholder if no images are found #}
+                    <img src="{% static 'img/place.jpg' %}" alt="Placeholder" style="width:100%; height: 200px; object-fit: cover;">
+                    {% endif %}
+                </a>
+                <h3><a href="{% url 'properties:property_detail' property.slug %}">{{ property.title }}</a></h3>
+                <p>{{ property.location }}</p>
+                <p>Price: FCFA {{ property.price }}</p>
+                <a href="{% url 'properties:property_detail' property.slug %}" class="btn">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'properties:property_list' %}" class="btn">View All Properties</a>
+        </div>
+        {% else %}
+        <p style="text-align: center;">No featured properties available at the moment.</p>
+        {% endif %}
+    </section>
+
+    <section style="padding: 40px 0; background-color: #f9f9f9;">
+        <h2 class="section-title">Our Services</h2>
+        {% if services %}
+        <div class="grid-container">
+            {% for service in services %}
+            <div class="card">
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description|truncatechars:150 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'properties:service_list' %}" class="btn">See All Services</a>
+        </div>
+        {% else %}
+        <p style="text-align: center;">No services listed yet.</p>
+        {% endif %}
+    </section>
+
+    <section style="padding: 40px 0;">
+        <h2 class="section-title">Our Recent Projects</h2>
+        {% if featured_projects %}
+        <div class="grid-container">
+            {% for project in featured_projects %}
+            <div class="card">
+                <a href="{% url 'properties:project_detail' project.slug %}">
+                    {% if project.main_image %}
+                    <img src="{{ project.main_image.url }}" alt="{{ project.title }}" style="width:100%; height: 150px; object-fit: cover;">
+                    {% else %}
+                    <img src="{% static 'img/place.jpg' %}" alt="Placeholder Project" style="width:100%; height: 150px; object-fit: cover;">
+                    {% endif %}
+                </a>
+                <h3><a href="{% url 'properties:project_detail' project.slug %}">{{ project.title }}</a></h3>
+                <p>{{ project.location }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'properties:project_list' %}" class="btn">View All Projects</a>
+        </div>
+        {% else %}
+        <p style="text-align: center;">No featured projects available yet.</p>
+        {% endif %}
+    </section>
+
+    <section style="background-color: #007bff; color: white; padding: 50px 20px; text-align: center;">
+        <h2>Ready to Start Your Project?</h2>
+        <p style="margin-bottom: 20px;">Contact us today to turn your real estate dreams into reality!</p>
+        <a href="{% url 'properties:contact' %}" class="btn" style="background-color: white; color: #007bff;">Get in Touch</a>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Virtual environment
+env/
+venv/
+.env/
+.venv/
+
+
+# Media and static files (if you collect them locally)
+media/
+static_root/ # Or whatever your STATIC_ROOT is
+
+# IDE files
+.idea/          # PyCharm
+.vscode/        # VS Code
+*.iml           # IntelliJ IDEA
+
+# Operating System files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Django specific
+*.log
+local_settings.py # If you have a separate local settings file

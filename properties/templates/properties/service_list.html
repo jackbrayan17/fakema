@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Services - FAKEMA Real Estate{% endblock %}
+
+{% block content %}
+    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
+        <h1>Our Comprehensive Services</h1>
+        <p>From construction to renovation, FAKEMA offers tailored solutions.</p>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <div class="container">
+            {% if services %}
+            <div class="grid-container">
+                {% for service in services %}
+                <div class="card">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p style="text-align: center;">No services currently listed. Please check back soon!</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

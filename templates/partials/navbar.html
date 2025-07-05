@@ -1,0 +1,14 @@
+{# my_real_estate_site/my_real_estate_site/templates/partials/navbar.html #}
+<nav>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="{% url 'properties:home' %}" class="logo">FAKEMA</a>
+        <ul style="display: flex;">
+            <li><a href="{% url 'properties:home' %}">Home</a></li>
+            <li><a href="{% url 'properties:about' %}">About Us</a></li>
+            <li><a href="{% url 'properties:service_list' %}">Services</a></li>
+            <li><a href="{% url 'properties:property_list' %}">Properties</a></li>
+            <li><a href="{% url 'properties:project_list' %}">Projects</a></li>
+            <li><a href="{% url 'properties:contact' %}">Contact</a></li>
+        </ul>
+    </div>
+</nav>

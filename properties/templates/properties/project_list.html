@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Projects - FAKEMA Real Estate{% endblock %}
+
+{% block content %}
+    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
+        <h1>Our Achievements</h1>
+        <p>Browse through our portfolio of successful real estate and BTP projects.</p>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <div class="container">
+            {% if page_obj %}
+            <div class="grid-container">
+                {% for project in page_obj %}
+                <div class="card">
+                    <a href="{% url 'properties:project_detail' project.slug %}">
+                        {% if project.main_image %}
+                        <img src="{{ project.main_image.url }}" alt="{{ project.title }}" style="width:100%; height: 180px; object-fit: cover;">
+                        {% else %}
+                        <img src="{% static 'img/placeholder_project.jpg' %}" alt="Placeholder Project" style="width:100%; height: 180px; object-fit: cover;">
+                        {% endif %}
+                    </a>
+                    <h3><a href="{% url 'properties:project_detail' project.slug %}">{{ project.title }}</a></h3>
+                    <p>{{ project.location }}</p>
+                    <p>{{ project.category }}</p>
+                    {% if project.completion_date %}
+                        <p>Completed: {{ project.completion_date|date:"M Y" }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">&laquo; Previous</a>
+                {% endif %}
+
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next &raquo;</a>
+                {% endif %}
+            </div>
+            {% else %}
+            <p style="text-align: center;">No projects currently listed. Check back for updates!</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

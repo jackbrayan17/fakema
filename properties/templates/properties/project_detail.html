@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ project.title }} - FAKEMA Projects{% endblock %}
+
+{% block content %}
+    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
+        <h1>{{ project.title }}</h1>
+        <p>{{ project.location }} - {{ project.category }}</p>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div style="flex: 2 1 600px;">
+                <div style="margin-bottom: 20px;">
+                    {% if project.main_image %}
+                        <img src="{{ project.main_image.url }}" alt="{{ project.title }}" style="width:100%; height: 500px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'img/placeholder_project.jpg' %}" alt="No project image" style="width:100%; height: 500px; object-fit: cover;">
+                    {% endif %}
+                </div>
+
+                <div class="card">
+                    <h2>Project Overview</h2>
+                    <p><strong>Category:</strong> {{ project.category }}</p>
+                    <p><strong>Location:</strong> {{ project.location }}</p>
+                    {% if project.completion_date %}
+                    <p><strong>Completion Date:</strong> {{ project.completion_date|date:"F d, Y" }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="card">
+                    <h2>Description</h2>
+                    <p>{{ project.description|linebreaksbr }}</p>
+                </div>
+            </div>
+
+            <div style="flex: 1 1 300px; background-color: #f0f8ff; padding: 20px; border: 1px solid #add8e6; border-radius: 5px; text-align: center;">
+                <h2>Have a Similar Project?</h2>
+                <p style="margin-bottom: 20px;">Let us know how FAKEMA can help you.</p>
+                <a href="{% url 'properties:contact' %}" class="btn">Get a Free Quote</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

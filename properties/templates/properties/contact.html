@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us - FAKEMA Real Estate{% endblock %}
+
+{% block content %}
+    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
+        <h1>Get In Touch With Us</h1>
+        <p>We'd love to hear from you. Send us a message!</p>
+    </section>
+
+    <section style="padding: 40px 0;">
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div class="card" style="flex: 1 1 400px;">
+                <h2>Send Us a Message</h2>
+                
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.property.as_hidden }}
+
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %} <p style="color: red; font-size: 0.9em;">{{ form.name.errors }}</p>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                        {% if form.email.errors %} <p style="color: red; font-size: 0.9em;">{{ form.email.errors }}</p>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.phone.id_for_label }}">Phone (Optional)</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %} <p style="color: red; font-size: 0.9em;">{{ form.phone.errors }}</p>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Message</label>
+                        {{ form.message }}
+                        {% if form.message.errors %} <p style="color: red; font-size: 0.9em;">{{ form.message.errors }}</p>{% endif %}
+                    </div>
+                    <button type="submit" class="btn">Submit Message</button>
+                </form>
+            </div>
+
+            <div class="card" style="flex: 1 1 300px; background-color: #007bff; color: white;">
+                <h2>Our Contact Details</h2>
+                <p>Location: Douala, CAMEROUN</p>
+                <p>Phone: +237 6XX XXX XXX</p>
+                <p>Email: info@fakemabuilding.com</p>
+                <p>Hours: Mon - Fri: 8:00 AM - 5:00 PM</p>
+                <h3 style="margin-top: 20px;">Follow Us</h3>
+                <p> [Social Media Icons/Links here if you add them manually] </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
