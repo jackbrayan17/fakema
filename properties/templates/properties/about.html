@@ -4,64 +4,725 @@
 {% block title %}About Us - FAKEMA Real Estate{% endblock %}
 
 {% block content %}
-    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
-        <h1>About FAKEMA</h1>
-        <p>Your trusted partner in African real estate and construction.</p>
-    </section>
+<!-- Hero Section -->
+<section class="luxe-hero-about" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% static 'img/place.jpg' %}');">
+    <div class="hero-content">
+        <div class="prestige-badge">Excellence Immobilière</div>
+        <h1 class="text-glow">FAKEMA BTP SARL</h1>
+        <p class="hero-subtitle">L'art de bâtir des légendes immobilières</p>
+        <div class="hero-scroll">
+            <i class="fas fa-chevron-down gold-chevron"></i>
+        </div>
+    </div>
+</section>
 
-    <section style="padding: 40px 0;">
-        <div class="container">
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 30px;">
-                <div style="flex: 1 1 400px;">
-                    <h2>Our Mission</h2>
-                    <p>
-                        At FAKEMA BTP SARL, our mission is to empower Africans in the diaspora and local residents to achieve their real estate dreams in their home countries. We understand the unique challenges and opportunities, and we are committed to providing seamless, transparent, and reliable solutions.
-                    </p>
-                    <p>
-                        We aim to bridge the gap between dream and reality, ensuring every project, from a cozy family home to a large commercial development, is built on a foundation of trust, quality, and efficiency.
-                    </p>
-                </div>
-                <div style="flex: 1 1 400px;">
-                    <img src="{% static 'img/place.jpg' %}" alt="Our Mission" style="width:100%; height: 300px; object-fit: cover;">
-                </div>
-            </div>
+<!-- Mission Section -->
+<section class="ivory-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="gold-title">NOTRE MISSION</h2>
+            <div class="divider-gold"></div>
+        </div>
 
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; flex-direction: row-reverse; margin-bottom: 30px;">
-                <div style="flex: 1 1 400px;">
-                    <h2>Our Values</h2>
-                    <ul>
-                        <li><strong>Integrity:</strong> Conducting all our operations with honesty and transparency.</li>
-                        <li><strong>Quality:</strong> Delivering superior construction and real estate services.</li>
-                        <li><strong>Client Focus:</strong> Prioritizing our clients' needs and ensuring their satisfaction.</li>
-                        <li><strong>Innovation:</strong> Embracing modern techniques and sustainable practices.</li>
-                        <li><strong>Excellence:</strong> Striving for the highest standards in every project.</li>
-                    </ul>
+        <div class="mission-grid">
+            <div class="mission-content">
+                <div class="mission-icon">
+                    <i class="fas fa-bullseye gold-icon"></i>
                 </div>
-                <div style="flex: 1 1 400px;">
-                    <img src="{% static 'img/place.jpg' %}" alt="Our Values" style="width:100%; height: 300px; object-fit: cover;">
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;">
-                <h2>Why Choose FAKEMA?</h2>
-                <p style="max-width: 800px; margin: 0 auto 30px;">
-                    With years of experience and a deep understanding of the African real estate landscape, FAKEMA stands out as a reliable and efficient partner. We offer:
+                <p class="brown-text">
+                    FAKEMA incarne l'excellence immobilière africaine. Notre mission : transformer les visions architecturales en réalités tangibles, avec un savoir-faire qui allie tradition et innovation.
                 </p>
-                <div class="grid-container">
-                    <div class="card">
-                        <h3>Guaranteed Success</h3>
-                        <p>We ensure 100% success for your real estate investments.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Legal Expertise</h3>
-                        <p>All legal procedures handled by our expert team.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Transparent Tracking</h3>
-                        <p>Track your project's progress online, 24/7.</p>
-                    </div>
+                <p class="brown-text">
+                    Nous bâtissons plus que des propriétés - nous créons des héritages, des lieux de vie exceptionnels et des investissements durables.
+                </p>
+                <div class="signature">
+                    <img src="{% static 'img/signature.png' %}" alt="Signature" class="signature-img">
+                    <p class="gold-text">Directeur Général</p>
                 </div>
+            </div>
+            <div class="mission-image">
+                <img src="{% static 'img/place.jpg' %}" alt="Notre Mission" class="golden-frame">
+                <div class="image-overlay"></div>
+                <div class="gold-badge">Depuis 2010</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="golden-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>NOS VALEURS D'EXCELLENCE</h2>
+            <div class="divider-brown"></div>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Intégrité</h3>
+                <p>Une éthique irréprochable au cœur de chaque transaction</p>
+                <div class="value-ornament"></div>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Excellence</h3>
+                <p>Standards inégalés dans chaque réalisation immobilière</p>
+                <div class="value-ornament"></div>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-chess-queen"></i>
+                </div>
+                <h3>Prestige</h3>
+                <p>Des propriétés qui transcendent les tendances</p>
+                <div class="value-ornament"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="ivory-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="gold-title">NOTRE DIFFÉRENCE</h2>
+            <div class="divider-gold"></div>
+            <p class="section-subtitle brown-text">
+                Ce qui distingue FAKEMA dans l'univers immobilier premium
+            </p>
+        </div>
+
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-number gold-text">01</div>
+                <h3 class="gold-title">Expertise sur Mesure</h3>
+                <p class="brown-text">Un accompagnement personnalisé pour chaque projet immobilier</p>
+                <div class="advantage-line gold-bg"></div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-number gold-text">02</div>
+                <h3 class="gold-title">Réseau Exclusive</h3>
+                <p class="brown-text">Accès à des opportunités immobilières privilégiées</p>
+                <div class="advantage-line gold-bg"></div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-number gold-text">03</div>
+                <h3 class="gold-title">Gestion Clairvoyante</h3>
+                <p class="brown-text">Vision à long terme pour des investissements pérennes</p>
+                <div class="advantage-line gold-bg"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prestige CTA -->
+<section class="prestige-cta" style="background-image: linear-gradient(rgba(74, 45, 0, 0.9), rgba(74, 45, 0, 0.8)), url('{% static 'img/place.jpg' %}');">
+    <div class="container">
+        <div class="cta-content">
+            <div class="prestige-badge">Élite Immobilière</div>
+            <h2>PRÊT À ÉCRIRE VOTRE SUCCÈS IMMOBILIER ?</h2>
+            <p class="gold-light-text">
+                Notre équipe d'experts se tient prêts à concrétiser votre vision immobilière la plus ambitieuse
+            </p>
+            <a href="#" class="luxe-btn gold-hover">
+                <span>Rencontrer un conseiller</span>
+                <i class="fas fa-crown"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Palette Exclusive Marron & Or */
+    :root {
+        --deep-brown: #4A2D00;
+        --rich-brown: #5A3A10;
+        --light-brown: #8C6B3F;
+        --ivory: #FFFFF0;
+
+        --gold: #D4AF37;
+        --gold-light: #F0E6C2;
+        --gold-dark: #B38E2D;
+        --gold-bright: #FFD700;
+
+        --black: #1A1A1A;
+        --white: #FFFFFF;
+    }
+
+    /* Base Styles */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        overflow-x: hidden;
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Hero Section */
+    .luxe-hero-about {
+        height: 100vh;
+        min-height: 600px;
+        max-height: 1200px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        color: var(--white);
+    }
+
+    .hero-content {
+        max-width: 90%;
+        padding: 0 20px;
+        z-index: 2;
+    }
+
+    .prestige-badge {
+        display: inline-block;
+        background-color: var(--gold-bright);
+        color: var(--deep-brown);
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .luxe-hero-about h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        line-height: 1.2;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1.25rem, 4vw, 1.8rem);
+        margin-bottom: 3rem;
+        color: var(--gold-light);
+        font-weight: 300;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    }
+
+    .hero-scroll {
+        margin-top: 5rem;
+        animation: bounce 2s infinite;
+    }
+
+    .gold-chevron {
+        color: var(--gold-bright);
+        font-size: 2rem;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-20px);}
+        60% {transform: translateY(-10px);}
+    }
+
+    /* Sections */
+    .ivory-section {
+        padding: 5rem 0;
+        background-color: var(--ivory);
+    }
+
+    .golden-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        color: var(--deep-brown);
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    .gold-title {
+        color: var(--gold-dark);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header h2 {
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: 1.2;
+    }
+
+    .divider-gold {
+        width: 6rem;
+        height: 4px;
+        background: var(--gold);
+        margin: 0 auto 2.5rem;
+        box-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
+    }
+
+    .divider-brown {
+        width: 6rem;
+        height: 4px;
+        background: var(--deep-brown);
+        margin: 0 auto 2.5rem;
+    }
+
+    .section-subtitle {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        max-width: 700px;
+        margin: 1.5rem auto 0;
+        line-height: 1.6;
+    }
+
+    .brown-text {
+        color: var(--rich-brown);
+    }
+
+    .gold-text {
+        color: var(--gold-dark);
+    }
+
+    .gold-light-text {
+        color: var(--gold-light);
+    }
+
+    /* Mission Section */
+    .mission-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .mission-content {
+        position: relative;
+        text-align: center;
+    }
+
+    .mission-icon {
+        width: 6rem;
+        height: 6rem;
+        background: rgba(212, 175, 55, 0.15);
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2.5rem;
+    }
+
+    .gold-icon {
+        color: var(--gold-dark);
+        font-size: 2.5rem;
+    }
+
+    .mission-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .signature {
+        margin-top: 3rem;
+    }
+
+    .signature-img {
+        height: 4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .mission-image {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        height: 25rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .golden-frame {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(74, 45, 0, 0.4) 0%, transparent 70%);
+    }
+
+    .gold-badge {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: 0.5rem 1.25rem;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Values Section */
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .value-card {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 3rem 2rem;
+        text-align: center;
+        transition: all 0.5s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .value-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    .value-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+        z-index: -1;
+    }
+
+    .value-icon {
+        width: 6rem;
+        height: 6rem;
+        background: var(--gold);
+        color: var(--deep-brown);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 2.2rem;
+        transition: all 0.5s ease;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .value-card:hover .value-icon {
+        transform: rotate(15deg) scale(1.1);
+        background: var(--gold-bright);
+    }
+
+    .value-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        color: var(--deep-brown);
+    }
+
+    .value-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--light-brown);
+        margin-bottom: 2rem;
+    }
+
+    .value-ornament {
+        width: 2.5rem;
+        height: 3px;
+        background: var(--gold);
+        margin: 0 auto;
+        transition: all 0.5s ease;
+    }
+
+    .value-card:hover .value-ornament {
+        width: 5rem;
+        background: var(--gold-bright);
+    }
+
+    /* Advantages Section */
+    .advantages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .advantage-card {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 3rem 2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.5s ease;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .advantage-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .advantage-number {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1;
+        opacity: 0.2;
+        position: absolute;
+        top: 1.25rem;
+        right: 1.5rem;
+        z-index: 0;
+    }
+
+    .advantage-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        position: relative;
+    }
+
+    .advantage-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .advantage-line {
+        width: 3.75rem;
+        height: 3px;
+        margin-top: 2.5rem;
+        transition: all 0.5s ease;
+    }
+
+    .gold-bg {
+        background: var(--gold);
+    }
+
+    .advantage-card:hover .advantage-line {
+        width: 7.5rem;
+        background: var(--gold-bright);
+    }
+
+    /* CTA Section */
+    .prestige-cta {
+        padding: 6rem 0;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .cta-content {
+        width: 90%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .prestige-cta h2 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        line-height: 1.2;
+    }
+
+    .prestige-cta p {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+    }
+
+    /* Buttons */
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: 1rem 2.25rem;
+        border-radius: 50px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.875rem;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .gold-hover:hover {
+        background: var(--gold-bright);
+        color: var(--deep-brown);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Responsive Adjustments */
+    @media (min-width: 768px) {
+        .mission-grid {
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .mission-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        .mission-icon {
+            margin: 0 0 2.5rem 0;
+        }
+
+        .mission-image {
+            flex: 1;
+            height: 35rem;
+        }
+
+        .signature {
+            margin: 3rem 0 0 0;
+            text-align: left;
+        }
+
+        .prestige-cta {
+            padding: 8rem 0;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .mission-grid {
+            gap: 5rem;
+        }
+
+        .mission-content p {
+            font-size: 1.2rem;
+        }
+
+        .prestige-cta {
+            padding: 10rem 0;
+        }
+    }
+
+    /* Gold particles effect */
+    .gold-particle {
+        position: absolute;
+        background-color: var(--gold-bright);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 10s infinite ease-in-out;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation for value cards
+    const animateElements = () => {
+        const elements = document.querySelectorAll('.value-card, .advantage-card');
+
+        elements.forEach(el => {
+            const elTop = el.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elTop < windowHeight * 0.85) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    // Set initial state
+    const cards = document.querySelectorAll('.value-card, .advantage-card');
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', animateElements);
+    animateElements(); // Run once on load
+
+    // Gold particles effect for hero section
+    const hero = document.querySelector('.luxe-hero-about');
+    if (hero) {
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'gold-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.width = `${Math.random() * 5 + 2}px`;
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            hero.appendChild(particle);
+        }
+    }
+
+    // Smooth scroll for hero chevron
+    const scrollChevron = document.querySelector('.hero-scroll');
+    if (scrollChevron) {
+        scrollChevron.addEventListener('click', () => {
+            window.scrollBy({
+                top: window.innerHeight * 0.8,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+</script>
 {% endblock %}

@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-2@@db4ivg!pgiz1jd=n@!%u_3j1ni_47v_81xn&bndb(2(vspx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fakema.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -136,3 +138,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    # Autres adresses autorisées si nécessaire (ex: votre domaine en production)
+]

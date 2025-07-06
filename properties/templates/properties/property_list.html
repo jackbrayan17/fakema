@@ -4,62 +4,617 @@
 {% block title %}Properties for Sale - FAKEMA Real Estate{% endblock %}
 
 {% block content %}
-    <section style="background-color: #007bff; color: white; padding: 30px 20px; text-align: center;">
-        <h1>Our Properties</h1>
-        <p>Find your dream home or investment property.</p>
-    </section>
+<!-- Hero Section -->
+<section class="luxe-property-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% static 'img/place.jpg' %}');">
+    <div class="hero-content">
+        <div class="prestige-badge">Prestige Immobilier</div>
+        <h1 class="text-glow">Nos Propriétés d'Exception</h1>
+        <p class="hero-subtitle">Découvrez des biens immobiliers qui transcendent le temps</p>
+    </div>
+</section>
 
-    <section style="padding: 40px 0;">
-        <div class="container">
-            <form method="GET" action="{% url 'properties:property_list' %}" style="background-color: white; padding: 20px; border: 1px solid #ddd; margin-bottom: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <input type="text" name="q" placeholder="Search by title, location..." value="{{ query_params.q|default:'' }}">
-                <select name="type">
-                    <option value="">All Types</option>
-                    {% for type in property_types %}
-                    <option value="{{ type.name }}" {% if query_params.type == type.name %}selected{% endif %}>{{ type.name }}</option>
-                    {% endfor %}
-                </select>
-                <input type="number" name="min_price" placeholder="Min Price" value="{{ query_params.min_price|default:'' }}">
-                <input type="number" name="max_price" placeholder="Max Price" value="{{ query_params.max_price|default:'' }}">
-                <input type="number" name="bedrooms" placeholder="Min Beds" value="{{ query_params.bedrooms|default:'' }}">
-                <input type="number" name="bathrooms" placeholder="Min Baths" value="{{ query_params.bathrooms|default:'' }}">
-                <button type="submit" class="btn" style="grid-column: 1 / -1;">Apply Filters</button>
-            </form>
-
-            {% if page_obj %}
-            <div class="grid-container">
-                {% for property in page_obj %}
-                <div class="card">
-                    <a href="{% url 'properties:property_detail' property.slug %}">
-                        {% if property.images.first %}
-                        <img src="{% static 'img/place.jpg' %}" alt="Placeholder Image" style="width:100%; height: 150px; object-fit: cover;">
-                        {% else %}
-                        <img src="{% static 'img/place.jpg' %}" alt="Placeholder" style="width:100%; height: 200px; object-fit: cover;">
-                        {% endif %}
-                    </a>
-                    <h3><a href="{% url 'properties:property_detail' property.slug %}">{{ property.title }}</a></h3>
-                    <p>{{ property.location }}</p>
-                    <p>Price: FCFA {{ property.price }}</p>
-                    <p>Beds: {{ property.bedrooms }}, Baths: {{ property.bathrooms }}, Area: {{ property.area_sqm|default:"N/A" }}m²</p>
-                    <a href="{% url 'properties:property_detail' property.slug %}" class="btn">View Details</a>
+<!-- Search Section -->
+<section class="golden-search-section">
+    <div class="container">
+        <form method="GET" action="{% url 'properties:property_list' %}" class="luxe-search-form">
+            <div class="search-grid">
+                <div class="search-group">
+                    <i class="fas fa-search gold-icon"></i>
+                    <input type="text" name="q" placeholder="Recherche par titre, localisation..." value="{{ query_params.q|default:'' }}">
                 </div>
-                {% endfor %}
+
+                <div class="search-group">
+                    <i class="fas fa-building gold-icon"></i>
+                    <select name="type">
+                        <option value="">Tous Types</option>
+                        {% for type in property_types %}
+                        <option value="{{ type.name }}" {% if query_params.type == type.name %}selected{% endif %}>{{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="search-group">
+                    <i class="fas fa-tags gold-icon"></i>
+                    <input type="number" name="min_price" placeholder="Prix Minimum" value="{{ query_params.min_price|default:'' }}">
+                </div>
+
+                <div class="search-group">
+                    <i class="fas fa-tag gold-icon"></i>
+                    <input type="number" name="max_price" placeholder="Prix Maximum" value="{{ query_params.max_price|default:'' }}">
+                </div>
+
+                <div class="search-group">
+                    <i class="fas fa-bed gold-icon"></i>
+                    <input type="number" name="bedrooms" placeholder="Min Chambres" value="{{ query_params.bedrooms|default:'' }}">
+                </div>
+
+                <div class="search-group">
+                    <i class="fas fa-bath gold-icon"></i>
+                    <input type="number" name="bathrooms" placeholder="Min Salles de Bain" value="{{ query_params.bathrooms|default:'' }}">
+                </div>
+
+                <button type="submit" class="luxe-btn gold-hover">
+                    <span>Appliquer les Filtres</span>
+                    <i class="fas fa-filter"></i>
+                </button>
             </div>
+        </form>
+    </div>
+</section>
 
-            <div class="pagination">
-                {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}{% for key, value in query_params.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&laquo; Previous</a>
-                {% endif %}
+<!-- Properties Section -->
+<section class="ivory-properties-section">
+    <div class="container">
+        {% if page_obj %}
+        <div class="grid-container">
+            {% for property in page_obj %}
+            <div class="card property-card">
+                <a href="{% url 'properties:property_detail' property.slug %}" class="property-image-link">
+                    <div class="property-badge">Nouveau</div>
+                    {% if property.images.first %}
+                    <img src="{% static 'img/place.jpg' %}" alt="{{ property.title }}" class="property-image">
+                    {% else %}
+                    <img src="{% static 'img/place.jpg' %}" alt="Image par défaut" class="property-image">
+                    {% endif %}
+                    <div class="property-overlay"></div>
+                </a>
 
-                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                <div class="property-details">
+                    <h3 class="gold-title"><a href="{% url 'properties:property_detail' property.slug %}">{{ property.title }}</a></h3>
+                    <p class="property-location"><i class="fas fa-map-marker-alt gold-icon"></i> {{ property.location }}</p>
 
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}{% for key, value in query_params.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Next &raquo;</a>
-                {% endif %}
+                    <div class="property-meta">
+                        <span><i class="fas fa-bed gold-icon"></i> {{ property.bedrooms }} Chambres</span>
+                        <span><i class="fas fa-bath gold-icon"></i> {{ property.bathrooms }} SDB</span>
+                        <span><i class="fas fa-ruler-combined gold-icon"></i> {{ property.area_sqm|default:"N/A" }}m²</span>
+                    </div>
+
+                    <div class="property-price">
+                        <span class="price-tag">FCFA {{ property.price }}</span>
+                    </div>
+
+                    <a href="{% url 'properties:property_detail' property.slug %}" class="luxe-btn-outline">
+                        <span>Voir les Détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="gold-border"></div>
             </div>
-            {% else %}
-            <p style="text-align: center;">No properties found matching your criteria.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="luxe-pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% for key, value in query_params.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link">
+                    <i class="fas fa-chevron-left"></i> Précédent
+                </a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% for key, value in query_params.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link">
+                    Suivant <i class="fas fa-chevron-right"></i>
+                </a>
             {% endif %}
         </div>
-    </section>
+        {% else %}
+        <div class="no-properties">
+            <i class="fas fa-search gold-icon"></i>
+            <h3 class="gold-title">Aucune propriété trouvée</h3>
+            <p class="brown-text">Aucun bien ne correspond à vos critères de recherche.</p>
+            <a href="{% url 'properties:property_list' %}" class="luxe-btn gold-hover">
+                <span>Réinitialiser la recherche</span>
+                <i class="fas fa-sync-alt"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    /* Palette Exclusive Marron & Or */
+    :root {
+        --deep-brown: #4A2D00;
+        --rich-brown: #5A3A10;
+        --light-brown: #8C6B3F;
+        --ivory: #FFFFF0;
+
+        --gold: #D4AF37;
+        --gold-light: #F0E6C2;
+        --gold-dark: #B38E2D;
+        --gold-bright: #FFD700;
+
+        --black: #1A1A1A;
+        --white: #FFFFFF;
+    }
+
+    /* Base Responsive Styles */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: var(--black);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Hero Section */
+    .luxe-property-hero {
+        height: 60vh;
+        min-height: 500px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        color: var(--white);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        z-index: 2;
+    }
+
+    .prestige-badge {
+        display: inline-block;
+        background-color: var(--gold-bright);
+        color: var(--deep-brown);
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .luxe-property-hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        line-height: 1.2;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        margin-bottom: 40px;
+        color: var(--gold-light);
+    }
+
+    /* Search Section */
+    .golden-search-section {
+        padding: 50px 0;
+        background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+
+    .luxe-search-form {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .search-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .search-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .gold-icon {
+        color: var(--gold-dark);
+        position: absolute;
+        left: 15px;
+        font-size: 1.1rem;
+    }
+
+    .luxe-search-form input,
+    .luxe-search-form select {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 5px;
+        font-size: 1rem;
+        background: var(--ivory);
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .luxe-search-form input:focus,
+    .luxe-search-form select:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+
+    .luxe-search-form button {
+        grid-column: 1 / -1;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* Properties Section */
+    .ivory-properties-section {
+        padding: 80px 0;
+        background-color: var(--ivory);
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+        gap: 40px;
+        margin: 50px 0;
+    }
+
+    .card.property-card {
+        background: var(--white);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.5s ease;
+        position: relative;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .property-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    .property-image-link {
+        display: block;
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .property-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        z-index: 2;
+    }
+
+    .property-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .property-card:hover .property-image {
+        transform: scale(1.05);
+    }
+
+    .property-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(74, 45, 0, 0.7), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .property-card:hover .property-overlay {
+        opacity: 1;
+    }
+
+    .property-details {
+        padding: 25px;
+    }
+
+    .property-card h3 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+
+    .gold-title {
+        color: var(--gold-dark);
+    }
+
+    .property-card h3 a {
+        color: var(--deep-brown);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .property-card h3 a:hover {
+        color: var(--gold);
+    }
+
+    .property-location {
+        color: var(--light-brown);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .property-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+        color: var(--light-brown);
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .property-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .property-price {
+        margin-bottom: 25px;
+    }
+
+    .price-tag {
+        background: var(--gold-light);
+        color: var(--deep-brown);
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .gold-border {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+    }
+
+    .property-card:hover .gold-border {
+        transform: scaleX(1);
+    }
+
+    /* Pagination */
+    .luxe-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 60px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-link {
+        color: var(--deep-brown);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .pagination-link:hover {
+        background: var(--gold-light);
+        color: var(--deep-brown);
+    }
+
+    .current-page {
+        color: var(--light-brown);
+        font-weight: 500;
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    /* No Properties */
+    .no-properties {
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .no-properties i {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: 20px;
+    }
+
+    .no-properties h3 {
+        margin-bottom: 15px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .no-properties p {
+        margin-bottom: 30px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    /* Buttons */
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--deep-brown);
+        padding: clamp(12px, 3vw, 15px) clamp(25px, 5vw, 35px);
+        border-radius: 50px;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .luxe-btn-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: transparent;
+        color: var(--deep-brown);
+        padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 2px solid var(--gold);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .luxe-btn-outline:hover {
+        background: var(--gold);
+        color: var(--deep-brown);
+    }
+
+    .gold-hover:hover {
+        background: var(--gold-bright);
+        color: var(--deep-brown);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .luxe-property-hero {
+            height: 50vh;
+            min-height: 400px;
+        }
+
+        .search-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .luxe-search-form {
+            padding: 20px;
+        }
+
+        .property-image-link {
+            height: 200px;
+        }
+
+        .property-details {
+            padding: 20px;
+        }
+
+        .luxe-pagination {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .luxe-property-hero {
+            min-height: 350px;
+        }
+
+        .property-meta {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .no-properties {
+            padding: 50px 15px;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation for property cards
+    const propertyCards = document.querySelectorAll('.property-card');
+
+    function animateCards() {
+        propertyCards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (cardTop < windowHeight * 0.85) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    // Set initial state
+    propertyCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', animateCards);
+    animateCards(); // Run once on load
+});
+</script>
 {% endblock %}
