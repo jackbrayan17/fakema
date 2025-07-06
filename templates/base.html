@@ -9,8 +9,8 @@
     <style>
         /* Palette Exclusive Marron & Or */
         :root {
-            --deep-brown: #4A2D00;
-            --rich-brown: #5A3A10;
+            --logo-brown: #3E2A13;  /* Couleur proche du logo */
+            --rich-brown: #5A3A10;  /* Marron clair existant */
             --light-brown: #8C6B3F;
             --ivory: #FFFFF0;
 
@@ -38,9 +38,9 @@
             padding: 0 20px;
         }
 
-        /* Navbar Luxe */
+        /* Navbar Luxe - Dégradé adapté pour le logo */
         nav {
-            background: linear-gradient(135deg, var(--deep-brown), var(--rich-brown));
+            background: linear-gradient(to right, var(--logo-brown), var(--rich-brown));
             color: var(--gold-light);
             padding: 15px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@
 
         nav .logo img {
             height: 40px;
-            filter: brightness(0) saturate(100%) invert(76%) sepia(36%) saturate(427%) hue-rotate(6deg) brightness(92%) contrast(87%);
+            /* Suppression du filtre pour garder la couleur originale du logo */
         }
 
         nav .logo span {
@@ -73,6 +73,7 @@
             color: var(--gold-bright);
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Pour meilleure lisibilité */
         }
 
         nav ul {
@@ -121,17 +122,17 @@
 
         /* Footer Luxe */
         footer {
-            background: linear-gradient(135deg, var(--deep-brown), var(--rich-brown));
+            background: linear-gradient(to right, var(--deep-brown), var(--rich-brown));
             color: var(--gold-light);
             padding: 40px 0 20px;
             border-top: 3px solid var(--gold);
+            text-align: center;
         }
 
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
             gap: 20px;
         }
 
@@ -152,6 +153,10 @@
             font-size: 0.95rem;
         }
 
+        .footer-info {
+            width: 100%;
+        }
+
         .footer-info p {
             margin: 10px 0;
             line-height: 1.6;
@@ -159,8 +164,10 @@
 
         .footer-social {
             display: flex;
+            justify-content: center;
             gap: 15px;
             margin-top: 15px;
+            width: 100%;
         }
 
         .social-icon {
@@ -183,7 +190,7 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        /* Basic Styles (conservés de votre version originale) */
+        /* Basic Styles */
         .hero {
             background-color: #f0f0f0;
             padding: 50px 20px;
