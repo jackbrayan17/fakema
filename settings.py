@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2@@db4ivg!pgiz1jd=n@!%u_3j1ni_47v_81xn&bndb(2(vspx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fakema.onrender.com']
+ALLOWED_HOSTS = ['design-fakema-aurore.onrender.com ']
 
 
 # Application definition

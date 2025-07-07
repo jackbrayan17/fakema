@@ -5,11 +5,11 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="luxe-property-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% if images %}{{ images.0.image.url }}{% else %}{% static 'img/place.jpg' %}{% endif %}');">
+<section class="luxe-property-hero" style="background-image: linear-gradient(rgba(74, 45, 0, 0.85), rgba(74, 45, 0, 0.75)), url('{% if property.main_image %}{{ property.main_image.url }}{% else %}{% static 'img/place.jpg' %}{% endif %}');">
     <div class="hero-content">
         <div class="prestige-badge">Propriété Exclusive</div>
         <h1 class="text-glow">{{ property.title }}</h1>
-        <p class="hero-subtitle">{{ property.location }}</p>
+        <p class="hero-subtitle">{{ property.location|default:"N/A" }}</p>
     </div>
 </section>
 
@@ -23,15 +23,28 @@
                 <div class="luxe-gallery">
                     {% if images %}
                         <div class="gallery-container" id="image-gallery">
-                            {% for img in images %}
-                                <div class="gallery-item">
-                                    <img src="{{ img.image.url }}" alt="{{ img.alt_text|default:property.title }}" class="gallery-img">
-                                </div>
-                            {% endfor %}
+                            <div class="gallery-track">
+                                {% for img in images %}
+                                    <div class="gallery-item">
+                                        <img src="{{ img.image.url|default_if_none:'/static/img/placeholder.jpg' }}" alt="{{ img.alt_text|default:property.title }}" class="gallery-img">
+                                    </div>
+                                {% endfor %}
+                                <!-- Repeat for infinite loop -->
+                                {% for img in images %}
+                                    <div class="gallery-item">
+                                        <img src="{{ img.image.url|default_if_none:'/static/img/placeholder.jpg' }}" alt="{{ img.alt_text|default:property.title }}" class="gallery-img">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="gallery-nav">
+                                <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                                <div class="gallery-dots"></div>
+                                <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
                         </div>
                     {% else %}
                         <div class="gallery-placeholder">
-                            <img src="{% static 'img/placeholder.jpg' %}" alt="No image available" class="placeholder-img">
+                            <img src="{% static 'img/placeholder.jpg' %}" alt="Aucune image disponible" class="placeholder-img">
                         </div>
                     {% endif %}
                 </div>
@@ -44,28 +57,28 @@
                             <i class="fas fa-home gold-icon"></i>
                             <div>
                                 <span class="detail-label">Type</span>
-                                <span class="detail-value">{{ property.property_type.name }}</span>
+                                <span class="detail-value">{{ property.property_type.name|default:"N/A" }}</span>
                             </div>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-tag gold-icon"></i>
                             <div>
                                 <span class="detail-label">Prix</span>
-                                <span class="detail-value">FCFA {{ property.price }}</span>
+                                <span class="detail-value">FCFA {{ property.price|default:"N/A" }}</span>
                             </div>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-bed gold-icon"></i>
                             <div>
                                 <span class="detail-label">Chambres</span>
-                                <span class="detail-value">{{ property.bedrooms }}</span>
+                                <span class="detail-value">{{ property.bedrooms|default:"N/A" }}</span>
                             </div>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-bath gold-icon"></i>
                             <div>
                                 <span class="detail-label">Salles de bain</span>
-                                <span class="detail-value">{{ property.bathrooms }}</span>
+                                <span class="detail-value">{{ property.bathrooms|default:"N/A" }}</span>
                             </div>
                         </div>
                         {% if property.area_sqm %}
@@ -90,7 +103,7 @@
                             <i class="fas fa-map-marker-alt gold-icon"></i>
                             <div>
                                 <span class="detail-label">Localisation</span>
-                                <span class="detail-value">{{ property.location }}</span>
+                                <span class="detail-value">{{ property.location|default:"N/A" }}</span>
                             </div>
                         </div>
                         {% if property.address %}
@@ -109,7 +122,7 @@
                 <div class="luxe-card property-description">
                     <h2 class="gold-title">Description</h2>
                     <div class="description-content">
-                        {{ property.description|linebreaksbr }}
+                        {{ property.description|linebreaksbr|default:"Aucune description disponible." }}
                     </div>
                 </div>
             </div>
@@ -130,7 +143,6 @@
                     <form method="post" class="luxe-form">
                         {% csrf_token %}
                         {{ form.property }}
-
                         <div class="form-group">
                             <label for="{{ form.name.id_for_label }}" class="gold-label">Nom</label>
                             {{ form.name }}
@@ -169,12 +181,10 @@
         --rich-brown: #5A3A10;
         --light-brown: #8C6B3F;
         --ivory: #FFFFF0;
-
         --gold: #D4AF37;
         --gold-light: #F0E6C2;
         --gold-dark: #B38E2D;
         --gold-bright: #FFD700;
-
         --black: #1A1A1A;
         --white: #FFFFFF;
     }
@@ -271,13 +281,19 @@
     }
 
     .gallery-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-        gap: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gallery-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        will-change: transform;
     }
 
     .gallery-item {
-        height: clamp(250px, 30vw, 300px);
+        flex: 0 0 100%;
+        height: clamp(300px, 40vw, 400px);
         overflow: hidden;
     }
 
@@ -292,8 +308,58 @@
         transform: scale(1.05);
     }
 
+    .gallery-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 15px 0;
+        background: rgba(26, 26, 26, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    .gallery-prev, .gallery-next {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: none;
+        color: var(--deep-brown);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    .gallery-prev:hover, .gallery-next:hover {
+        background: var(--gold-dark);
+        color: var(--white);
+        transform: scale(1.1);
+    }
+
+    .gallery-dots {
+        display: flex;
+        gap: 10px;
+    }
+
+    .gallery-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(212, 175, 55, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .gallery-dot.active {
+        background: var(--gold);
+        transform: scale(1.2);
+    }
+
     .gallery-placeholder {
-        height: 400px;
+        height: clamp(300px, 40vw, 400px);
         background-color: var(--light-brown);
         display: flex;
         align-items: center;
@@ -499,6 +565,10 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .gallery-item {
+            height: clamp(250px, 35vw, 350px);
+        }
     }
 
     @media (max-width: 768px) {
@@ -509,6 +579,10 @@
 
         .details-grid {
             grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+        }
+
+        .gallery-item {
+            height: clamp(200px, 30vw, 300px);
         }
     }
 
@@ -525,6 +599,10 @@
             padding: 12px;
             gap: 10px;
         }
+
+        .gallery-item {
+            height: clamp(180px, 25vw, 250px);
+        }
     }
 
     @media (max-width: 400px) {
@@ -535,15 +613,82 @@
         .details-grid {
             grid-template-columns: 1fr;
         }
+
+        .gallery-item {
+            height: clamp(150px, 20vw, 200px);
+        }
     }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Simple gallery navigation
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    if (galleryItems.length > 0) {
-        galleryItems[0].classList.add('active');
+    // Gallery Navigation
+    const galleryContainer = document.querySelector('#image-gallery');
+    if (galleryContainer) {
+        const galleryTrack = galleryContainer.querySelector('.gallery-track');
+        const galleryItems = galleryContainer.querySelectorAll('.gallery-item');
+        const prevBtn = galleryContainer.querySelector('.gallery-prev');
+        const nextBtn = galleryContainer.querySelector('.gallery-next');
+        const dotsContainer = galleryContainer.querySelector('.gallery-dots');
+        let currentIndex = 0;
+        const originalItemCount = galleryItems.length / 2; // Divide by 2 due to repeated items for infinite loop
+
+        // Hide gallery navigation if no images
+        if (originalItemCount === 0) {
+            galleryContainer.style.display = 'none';
+            return;
+        }
+
+        // Create dots for original images only
+        for (let i = 0; i < originalItemCount; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToGallerySlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+        function updateGallery() {
+            const itemWidth = galleryItems[0].offsetWidth;
+            galleryTrack.style.transform = `translateX(-${(currentIndex % originalItemCount) * itemWidth}px)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === (currentIndex % originalItemCount));
+            });
+        }
+
+        function nextGallerySlide() {
+            currentIndex++;
+            updateGallery();
+        }
+
+        function prevGallerySlide() {
+            currentIndex--;
+            if (currentIndex < 0) currentIndex = originalItemCount - 1;
+            updateGallery();
+        }
+
+        function goToGallerySlide(index) {
+            currentIndex = index;
+            updateGallery();
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', prevGallerySlide);
+            nextBtn.addEventListener('click', nextGallerySlide);
+        }
+
+        // Auto-slide for gallery
+        let galleryInterval = setInterval(nextGallerySlide, 5000);
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(galleryInterval));
+        galleryContainer.addEventListener('mouseleave', () => {
+            galleryInterval = setInterval(nextGallerySlide, 5000);
+        });
+
+        // Update on window resize
+        window.addEventListener('resize', updateGallery);
+        updateGallery();
     }
 
     // Form animation
