@@ -18,17 +18,203 @@
           <span class="gold-price">FCFA {% widthratio i 1 5000000 %}</span>
         </div>
         <a href="#" class="luxe-btn">
-          <span>View Property</span>
-          <i class="fas fa-arrow-right"></i>
+        <span>View Property</span>
+        <i class="fas fa-arrow-right"></i>
         </a>
       </div>
     </div>
     {% endfor %}
   </div>
-  <div class="slider-nav">
-    <button class="nav-arrow prev"><i class="fas fa-chevron-left"></i></button>
-    <div class="slide-dots"></div>
-    <button class="nav-arrow next"><i class="fas fa-chevron-right"></i></button>
+  <div class="slider-nav-container">
+    <div class="slider-nav">
+      <button class="nav-arrow prev"><i class="fas fa-chevron-left"></i></button>
+      <div class="slide-dots"></div>
+      <button class="nav-arrow next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Services and Realizations Carousels -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>NOS SERVICES</h2>
+      <div class="divider-gold"></div>
+      <p>Discover our comprehensive real estate solutions</p>
+    </div>
+
+    <!-- Conception Architecturale -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Conception Architecturale des ouvrages BTP</h3>
+      <div class="carousel-track" data-carousel="1">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/architecture-'|add:i|add:'.jpg' %}" alt="Architecture {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/architecture-'|add:i|add:'.jpg' %}" alt="Architecture {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="1"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="1"></div>
+        <button class="carousel-next" data-carousel="1"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Vente de terrain -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Vente de terrain</h3>
+      <div class="carousel-track" data-carousel="2">
+        {% for i in "1234" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/land-'|add:i|add:'.jpeg' %}" alt="Land {{ i }}">
+          <div class="carousel-item-overlay">
+            <p>TERRAIN NU ET TITRÉ, EN VENTE </p>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "1234" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/land-'|add:i|add:'.jpeg' %}" alt="Land {{ i }}">
+          <div class="carousel-item-overlay">
+            <p>TERRAIN NU ET TITRÉ, EN VENTE À BONAMOUSSADI</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="2"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="2"></div>
+        <button class="carousel-next" data-carousel="2"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Réalisation des ouvrages BTP -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Réalisation des ouvrages BTP</h3>
+      <div class="carousel-track" data-carousel="3">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/construction-'|add:i|add:'.jpg' %}" alt="Construction {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/construction-'|add:i|add:'.jpg' %}" alt="Construction {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="3"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="3"></div>
+        <button class="carousel-next" data-carousel="3"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Mise à disposition des logements -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Mise à disposition des logements</h3>
+      <div class="carousel-track" data-carousel="4">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/housing-'|add:i|add:'.jpg' %}" alt="Housing {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/housing-'|add:i|add:'.jpg' %}" alt="Housing {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="4"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="4"></div>
+        <button class="carousel-next" data-carousel="4"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>NOS RÉALISATIONS</h2>
+      <div class="divider-gold"></div>
+      <p>Explore our portfolio of exceptional projects</p>
+    </div>
+
+    <!-- Rénovation de maison -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Rénovation de maison</h3>
+      <div class="carousel-track" data-carousel="5">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/renovation-'|add:i|add:'.jpg' %}" alt="Renovation {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/renovation-'|add:i|add:'.jpg' %}" alt="Renovation {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="5"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="5"></div>
+        <button class="carousel-next" data-carousel="5"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Réalisation d'une villa -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Réalisation d'une villa</h3>
+      <div class="carousel-track" data-carousel="6">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/villa-'|add:i|add:'.jpg' %}" alt="Villa {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/villa-'|add:i|add:'.jpg' %}" alt="Villa {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="6"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="6"></div>
+        <button class="carousel-next" data-carousel="6"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Réalisation d'un marché -->
+    <div class="carousel-container">
+      <h3 class="carousel-title">Réalisation d'un marché</h3>
+      <div class="carousel-track" data-carousel="7">
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/market-'|add:i|add:'.jpg' %}" alt="Market {{ i }}">
+        </div>
+        {% endfor %}
+        <!-- Repeat for infinite loop -->
+        {% for i in "123456" %}
+        <div class="carousel-item">
+          <img src="{% static 'img/market-'|add:i|add:'.jpg' %}" alt="Market {{ i }}">
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="7"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" data-carousel="7"></div>
+        <button class="carousel-next" data-carousel="7"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -255,19 +441,30 @@
     color: var(--gold);
   }
 
-  .slider-nav {
+  .slider-nav-container {
     position: absolute;
-    bottom: 10%;
-    left: 10%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    justify-content: center;
+    padding: 20px 0;
     z-index: 3;
   }
 
+  .slider-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(26, 26, 26, 0.5);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+  }
+
   .nav-arrow {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: rgba(212, 175, 55, 0.3);
     border: none;
@@ -277,7 +474,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
   }
 
   .nav-arrow:hover {
@@ -305,9 +501,134 @@
     transform: scale(1.2);
   }
 
+  /* Services Section */
+  .services-section {
+    padding: 80px 0;
+    background-color: var(--ivory);
+  }
+
+  .carousel-container {
+    margin-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-title {
+    font-size: 2rem;
+    color: var(--deep-brown);
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  .carousel-item {
+    flex: 0 0 20%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .carousel-item img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .carousel-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    background: rgba(74, 45, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+  }
+
+  .carousel-item-overlay p {
+    color: var(--gold-light);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+
+  .carousel-item:hover .carousel-item-overlay {
+    opacity: 1;
+  }
+
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 25px;
+  }
+
+  .carousel-prev, .carousel-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: none;
+    color: var(--deep-brown);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .carousel-prev:hover, .carousel-next:hover {
+    background: var(--gold-dark);
+    color: var(--white);
+    transform: scale(1.1);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 12px;
+  }
+
+  .carousel-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-dot.active {
+    background: var(--gold);
+    transform: scale(1.2);
+  }
+
   /* Golden Properties */
   .golden-properties {
-    padding: 80px 0;
+    padding: 60px 0 80px;
     background-color: var(--ivory);
   }
 
@@ -722,6 +1043,14 @@
       flex-direction: row;
       height: 150px;
     }
+
+    .carousel-item {
+      flex: 0 0 33.33%;
+    }
+
+    .carousel-item img {
+      height: 200px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -736,12 +1065,44 @@
       max-width: 90%;
     }
 
+    .slider-nav {
+      padding: 8px 15px;
+    }
+
+    .nav-arrow {
+      width: 35px;
+      height: 35px;
+      font-size: 0.8rem;
+    }
+
     .property-grid {
       grid-template-columns: 1fr;
     }
 
     .features-grid {
       grid-template-columns: 1fr;
+    }
+
+    .carousel-item {
+      flex: 0 0 50%;
+    }
+
+    .carousel-item img {
+      height: 180px;
+    }
+
+    .carousel-title {
+      font-size: 1.5rem;
+    }
+
+    .carousel-prev, .carousel-next {
+      width: 40px;
+      height: 40px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
     }
   }
 
@@ -762,9 +1123,21 @@
       gap: 10px;
     }
 
-    .nav-arrow {
-      width: 40px;
-      height: 40px;
+    .slider-nav {
+      gap: 10px;
+      padding: 5px 10px;
+    }
+
+    .carousel-item {
+      flex: 0 0 100%;
+    }
+
+    .carousel-item img {
+      height: 150px;
+    }
+
+    .carousel-title {
+      font-size: 1.3rem;
     }
   }
 
@@ -790,7 +1163,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentIndex = 0;
   let slideInterval;
 
-  // Create dots
+  // Create dots for hero slider
   slides.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.classList.add('slide-dot');
@@ -801,12 +1174,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const dots = document.querySelectorAll('.slide-dot');
 
-  // Set initial slide
   function setSlidePosition() {
     sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  // Next slide
   function nextSlide() {
     currentIndex = (currentIndex + 1) % slides.length;
     setSlidePosition();
@@ -814,7 +1185,6 @@ document.addEventListener('DOMContentLoaded', function() {
     resetInterval();
   }
 
-  // Previous slide
   function prevSlide() {
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     setSlidePosition();
@@ -822,7 +1192,6 @@ document.addEventListener('DOMContentLoaded', function() {
     resetInterval();
   }
 
-  // Go to specific slide
   function goToSlide(index) {
     currentIndex = index;
     setSlidePosition();
@@ -830,29 +1199,91 @@ document.addEventListener('DOMContentLoaded', function() {
     resetInterval();
   }
 
-  // Update dot indicators
   function updateDots() {
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentIndex);
     });
   }
 
-  // Reset auto-slide interval
   function resetInterval() {
     clearInterval(slideInterval);
     slideInterval = setInterval(nextSlide, 5000);
   }
 
-  // Event listeners
   nextBtn.addEventListener('click', nextSlide);
   prevBtn.addEventListener('click', prevSlide);
-
-  // Start auto-slide
   slideInterval = setInterval(nextSlide, 5000);
 
-  // Pause on hover
   sliderTrack.addEventListener('mouseenter', () => clearInterval(slideInterval));
   sliderTrack.addEventListener('mouseleave', resetInterval);
+
+  // Carousels
+  const carousels = document.querySelectorAll('.carousel-container');
+  carousels.forEach(carousel => {
+    const carouselId = carousel.querySelector('.carousel-track').getAttribute('data-carousel');
+    const track = carousel.querySelector('.carousel-track');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const prevBtn = carousel.querySelector('.carousel-prev');
+    const nextBtn = carousel.querySelector('.carousel-next');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    let currentIndex = 0;
+    let itemCount = carouselId === '2' ? 4 : 6; // Vente de terrain has 4 images
+
+    // Hide carousel if no images
+    if (items.length === 0) {
+      carousel.style.display = 'none';
+      return;
+    }
+
+    // Create dots for eachcarousel (only for the original set, not the repeated items)
+    for (let i = 0; i < itemCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToCarouselSlide(carouselId, i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = carousel.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+      const itemWidth = items[0].offsetWidth + 30; // Include padding
+      track.style.transform = `translateX(-${(currentIndex % itemCount) * itemWidth}px)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === (currentIndex % itemCount));
+      });
+    }
+
+    function nextCarouselSlide() {
+      currentIndex++;
+      updateCarousel();
+    }
+
+    function prevCarouselSlide() {
+      currentIndex--;
+      if (currentIndex < 0) currentIndex = items.length - 1;
+      updateCarousel();
+    }
+
+    function goToCarouselSlide(carouselId, index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    prevBtn.addEventListener('click', prevCarouselSlide);
+    nextBtn.addEventListener('click', nextCarouselSlide);
+
+    // Auto-slide for each carousel
+    let carouselInterval = setInterval(nextCarouselSlide, 4000);
+    carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+    carousel.addEventListener('mouseleave', () => {
+      carouselInterval = setInterval(nextCarouselSlide, 4000);
+    });
+
+    // Update on window resize
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+  });
 
   // Showcase Thumbnails
   const thumbnails = document.querySelectorAll('.thumbnail');
@@ -860,20 +1291,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', function() {
-      // Remove active class from all thumbnails
       thumbnails.forEach(t => t.classList.remove('active'));
-
-      // Add active class to clicked thumbnail
       this.classList.add('active');
-
-      // Change main image
       const bgUrl = this.style.backgroundImage;
       showcaseMain.style.backgroundImage = bgUrl;
     });
   });
 
   // Animate elements on scroll
-  const animateElements = document.querySelectorAll('.property-card, .feature-card');
+  const animateElements = document.querySelectorAll('.property-card, .feature-card, .carousel-container');
 
   function animateOnScroll() {
     animateElements.forEach((element, index) => {
@@ -886,11 +1312,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Initialize
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll();
 
-  // Set initial opacity to 0
   animateElements.forEach(element => {
     element.style.opacity = '0';
   });
